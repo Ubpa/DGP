@@ -178,7 +178,7 @@ Ptr<Scene> GenScene01() {
 
 	auto camera = CmptCamera::New(sobjRoot);
 
-	auto sphere0Transform = CmptTransform::New(sobj0, Ubpa::pointf3(0,0,-2), Ubpa::scalef3(0.5f));
+	auto sphere0Transform = CmptTransform::New(sobj0, Ubpa::pointf3(0, 0, -2), Ubpa::scalef3(0.5f));
 	auto sphere0 = Sphere::New();
 	auto sphere1Transform = CmptTransform::New(sobj0, Ubpa::pointf3(0, -100, -2), Ubpa::scalef3(99.5f));
 	auto sphere1 = Sphere::New();
@@ -221,7 +221,7 @@ Ptr<Scene> GenScene02() {
 	return scene;
 }
 
-Ptr<Scene> GenScene03(){
+Ptr<Scene> GenScene03() {
 	auto sobjRoot = SObj::New(nullptr, "root");
 	auto sobj0 = SObj::New(sobjRoot, "sobj0");
 	auto sobj1 = SObj::New(sobjRoot, "sobj1");
@@ -256,7 +256,7 @@ Ptr<Scene> GenScene04() {
 	cameraTransform->SetPosition(Ubpa::pointf3(0, 0, 3));
 	auto camera = CmptCamera::New(sobj_camera);
 
-	auto sphere0Transform = CmptTransform::New(sobj_sphere, Ubpa::pointf3(0, 0, 0), Ubpa::scalef3(1, 0.5,0.5), Ubpa::vecf3(0,1,0), Ubpa::to_radian(45.f));
+	auto sphere0Transform = CmptTransform::New(sobj_sphere, Ubpa::pointf3(0, 0, 0), Ubpa::scalef3(1, 0.5, 0.5), Ubpa::vecf3(0, 1, 0), Ubpa::to_radian(45.f));
 	auto sphere0 = Sphere::New();
 	auto sphere1Transform = CmptTransform::New(sobj_ground, Ubpa::pointf3(0, -100, 0), Ubpa::scalef3(99.5f));
 	auto sphere1 = Sphere::New();
@@ -284,7 +284,7 @@ Ptr<Scene> GenScene05() {
 	cameraTransform->SetPosition(Ubpa::pointf3(0, 0.1f, 3));
 	auto camera = CmptCamera::New(sobj_camera);
 
-	auto sphereTransform = CmptTransform::New(sobj_sphere, Ubpa::pointf3(0, 0, -2), Ubpa::scalef3(0.5f), Ubpa::vecf3(0,1,0), Ubpa::to_radian(30.f));
+	auto sphereTransform = CmptTransform::New(sobj_sphere, Ubpa::pointf3(0, 0, -2), Ubpa::scalef3(0.5f), Ubpa::vecf3(0, 1, 0), Ubpa::to_radian(30.f));
 	auto sphere = Sphere::New();
 	auto plane = Plane::New();
 
@@ -301,7 +301,7 @@ Ptr<Scene> GenScene05() {
 	auto material1 = CmptMaterial::New(sobj_ground, pink);
 
 	auto scene = Scene::New(sobjRoot, "scene05");
-	return scene; 
+	return scene;
 }
 
 Ptr<Scene> GenScene06() {
@@ -364,7 +364,7 @@ Ptr<Scene> GenScene07() {
 	for (int a = -11, id = 0; a < 11; a++) {
 		for (int b = -11; b < 11; b++, id++) {
 			auto ball = SObj::New(balls, "ball " + to_string(id));
-			Ubpa::pointf3 center(a + 0.9*Math::Rand_F(), 0.2, b + 0.9*Math::Rand_F());
+			Ubpa::pointf3 center(a + 0.9 * Math::Rand_F(), 0.2, b + 0.9 * Math::Rand_F());
 			CmptTransform::New(ball, center, Ubpa::scalef3(0.2f));
 
 			CmptGeometry::New(ball, Sphere::New());
@@ -372,15 +372,15 @@ Ptr<Scene> GenScene07() {
 			Ptr<BSDF> bsdf;
 			float choose_mat = Math::Rand_F();
 			if (choose_mat < 0.8) {  // diffuse
-				Ubpa::rgbf color(Math::Rand_F()*Math::Rand_F(), Math::Rand_F()*Math::Rand_F(), Math::Rand_F()*Math::Rand_F());
+				Ubpa::rgbf color(Math::Rand_F() * Math::Rand_F(), Math::Rand_F() * Math::Rand_F(), Math::Rand_F() * Math::Rand_F());
 				bsdf = BSDF_Diffuse::New(color);
 			}
 			else if (choose_mat < 0.95) { // metal
-				Ubpa::rgbf color(0.5f*(1 + Math::Rand_F()), 0.5f*(1 + Math::Rand_F()), 0.5f*(1 + Math::Rand_F()));
+				Ubpa::rgbf color(0.5f * (1 + Math::Rand_F()), 0.5f * (1 + Math::Rand_F()), 0.5f * (1 + Math::Rand_F()));
 				bsdf = BSDF_Mirror::New(color);
 			}
 			else {  // glass
-				bsdf = BSDF_Glass::New(1.2f + Math::Rand_F()*0.5f);
+				bsdf = BSDF_Glass::New(1.2f + Math::Rand_F() * 0.5f);
 			}
 
 			CmptMaterial::New(ball, bsdf);
@@ -500,7 +500,7 @@ Ptr<Scene> GenScene08() {
 	// cook torrance sphere
 	auto sobj_CTSphere = SObj::New(sobj_Root, "cook torrance sphere");
 
-	auto bsdfCookTorrance = BSDF_CookTorrance::New(10.f, 0.4f, Ubpa::rgbf(0.1f), Ubpa::rgbf(1.0f,0.3f,0.5f));
+	auto bsdfCookTorrance = BSDF_CookTorrance::New(10.f, 0.4f, Ubpa::rgbf(0.1f), Ubpa::rgbf(1.0f, 0.3f, 0.5f));
 	auto materialCookTorrance = CmptMaterial::New(sobj_CTSphere, bsdfCookTorrance);
 
 	auto CTSphereTransform = CmptTransform::New(sobj_CTSphere);
@@ -569,7 +569,7 @@ Ptr<Scene> GenScene10() {
 	auto sobj_IronSphere = SObj::New(sobj_Root, "rusted iron sphere");
 
 	auto bsdfIron = BSDF_MetalWorkflow::New(Ubpa::rgbf(1.f));
-	bsdfIron->albedoTexture = Image::New((ROOT_PATH+"data/textures/pbr/rusted_iron/albedo.png").c_str());
+	bsdfIron->albedoTexture = Image::New((ROOT_PATH + "data/textures/pbr/rusted_iron/albedo.png").c_str());
 	bsdfIron->metallicTexture = Image::New((ROOT_PATH + "data/textures/pbr/rusted_iron/metallic.png").c_str());
 	bsdfIron->roughnessTexture = Image::New((ROOT_PATH + "data/textures/pbr/rusted_iron/roughness.png").c_str());
 	bsdfIron->aoTexture = Image::New((ROOT_PATH + "data/textures/pbr/rusted_iron/ao.png").c_str());
@@ -648,15 +648,30 @@ Ptr<Scene> GenScene11() {
 	meshObj->AddComponent<CmptTransform>();
 	meshObj->AddComponent<CmptMaterial>(BSDF_Frostbite::New());
 
-	auto lightObj = SObj::New(sobjRoot, "light");
-	lightObj->AddComponent<CmptLight>(InfiniteAreaLight::New(Image::New(ROOT_PATH+"data/textures/newport_loft.hdr")));
-	auto ball = SObj::Load(ROOT_PATH + "data/objects/Balls.obj");
-	if(ball)
-		sobjRoot->AddChild(ball);
-	else {
-		cout << "WARNING::GenScene11:" << endl
-			<< "\t" << "load fail: data/objects/Balls.obj" << endl;
+	auto hdr = Image::New(ROOT_PATH + "data/textures/newport_loft.hdr");
+	if (hdr->IsValid()) {
+		auto lightObj = SObj::New(sobjRoot, "light");
+		lightObj->AddComponent<CmptLight>(InfiniteAreaLight::New(hdr));
+		auto ball = SObj::Load(ROOT_PATH + "data/objects/Balls.obj");
+		if (ball)
+			sobjRoot->AddChild(ball);
+		else {
+			cout << "WARNING::GenScene11:" << endl
+				<< "\t" << "load fail: data/objects/Balls.obj" << endl;
+		}
 	}
+	else {
+		auto sobj_areaLight = SObj::New(sobjRoot, "area light");
+		rgbf lightColor(0.33f, 1.0f, 0.f);
+		sobj_areaLight->AddComponent<CmptLight>(AreaLight::New(lightColor, 3000.f));
+		sobj_areaLight->AddComponent<CmptTransform>(pointf3(0.f, 3.f, 0.f), scalef3{ 1.f }, quatf(vecf3{ 1,0,0 }, to_radian(180.f)));
+		sobj_areaLight->AddComponent<CmptGeometry>(Plane::New());
+		sobj_areaLight->AddComponent<CmptMaterial>(BSDF_Emission::New(lightColor, 100.f));
+	}
+
+	auto sobj_Camera = SObj::New(sobjRoot, "camera");
+	auto camera = CmptCamera::New(sobj_Camera, 50.0f);
+	auto cameraTransform = CmptTransform::New(sobj_Camera);
 
 	return Scene::New(sobjRoot);
 }
